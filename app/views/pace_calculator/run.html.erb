@@ -1,0 +1,21 @@
+<%= form_tag("/run", method: "get") do %>
+    <%= label_tag "Pace: " %>
+    <%= text_field_tag(:pace_minutes) %> min <%= text_field_tag(:pace_seconds) %> sec per
+    <%= select_tag(:pace_length, options_for_select([['mile','mi'], ['kilometer','km'], ['meter','m']])) %>
+    <%= submit_tag 'Calculate Pace', name: 'pace' %><br/>
+    <%= label_tag "Distance: " %>
+    <%= text_field_tag(:distance) %>
+    <%= select_tag(:length, options_for_select([['miles','mi'], ['kilometers','km'], ['meters','m']])) %>
+    <%= submit_tag 'Calculate Distance', name: 'distance' %><br/>
+    <%= label_tag "Time: " %>
+    <%= text_field_tag(:time_hours) %> hr <%= text_field_tag(:time_minutes) %> min <%= text_field_tag(:time_seconds) %> sec
+    <%= submit_tag 'Calculate Time', name: 'time' %><br/>
+<% end %>
+
+<% if @pace %>
+  <%= @pace.print_run_pace %>
+<% elsif @time %>
+  <%= print_run_time(@time) %>
+
+<% elsif @distance %>
+<% end %>
