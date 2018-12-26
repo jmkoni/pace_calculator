@@ -1,24 +1,26 @@
 # Pace Calculator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### What is this?
 
-Things you may want to cover:
+I noticed that I've used a running pace calculator and a rowing pace calculator but I haven't seen one that combines everything. I also added swimming so I don't have to do as much math when I'm swimming as well.
 
-* Ruby version
+### Where can I find this?
 
-* System dependencies
+This application is hosted on Heroku as [pacecal](http://pacecal.herokuapp.com). It's automatically deployed on every merge to master.
 
-* Configuration
+### How to run
 
-* Database creation
+You must have [RubyGems](https://rubygems.org/pages/download) installed to run this application. Also recommended is [RVM](https://rvm.io) because you will need to install [Ruby version 2.5.3](https://www.ruby-lang.org/en/news/2018/10/18/ruby-2-5-3-released/).
+```
+gem install bundler
+bundle install
+rails s
+```
 
-* Database initialization
+### Tests
 
-* How to run the test suite
+There should definitely be tests! I will be using Rspec, but I spiked this for fun over Christmas and haven't written tests yet 😳. If you want to contribute, it would be appreciated.
 
-* Services (job queues, cache servers, search engines, etc.)
+### How to contribute
 
-* Deployment instructions
-
-* ...
+Fork this repo and submit a PR against master when you are ready!
