@@ -53,6 +53,7 @@
       <%= submit_tag 'Calculate Time', name: 'time' %><br/>
   <% end %>
 </div>
+<br/>
 <% if @pace %>
   <% if @pace.type == "pace" %>
     <%= @pace.print_pace %>
@@ -62,7 +63,9 @@
     <%= @pace.print_distance %>
   <% end %>
 <% end %>
-
+<% if @error %>
+  <font color="red"><b><%= @error %></b></font>
+<% end %>
 <script>
   document.getElementById("defaultOpen").click();
 </script>
