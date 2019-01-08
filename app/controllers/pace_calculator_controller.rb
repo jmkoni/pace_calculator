@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PaceCalculatorController < ApplicationController
+  VALID_DISTANCES = %w[mi km m 500m 50yd 50m 25yd 25m].freeze
   def index
     render 'pace_calculator/pace'
   end
@@ -61,13 +62,20 @@ class PaceCalculatorController < ApplicationController
   end
 
   def get_errors(type, params)
-    if type == 'pace'
+    if validate_distance(params)
+      'Please select a valid value for distance and/or pace type.'
+    elsif type == 'pace'
       errors_pace(params)
     elsif type == 'distance'
       errors_distance(params)
     else
       errors_time(params)
     end
+  end
+
+  def validate_distance(params)
+    !VALID_DISTANCES.include?(params[:distance_length]) ||
+      !VALID_DISTANCES.include?(params[:pace_length])
   end
 
   def errors_pace(params)
