@@ -10,7 +10,7 @@ This application is hosted on Heroku as [pacecal](http://pacecal.herokuapp.com).
 
 ### How to run
 
-You must have [RubyGems](https://rubygems.org/pages/download) installed to run this application. Also recommended is [RVM](https://rvm.io) because you will need to install [Ruby version 2.5.3](https://www.ruby-lang.org/en/news/2018/10/18/ruby-2-5-3-released/).
+You must have [RubyGems](https://rubygems.org/pages/download) installed to run this application. Also recommended is [RVM](https://rvm.io) because you will need to install [Ruby version 2.6.0](https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/).
 ```
 gem install bundler
 bundle install
