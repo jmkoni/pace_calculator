@@ -4,13 +4,8 @@ require_relative 'boot'
 
 require 'active_model/railtie'
 # And now the rest
-require 'active_job/railtie'
 require 'action_controller/railtie'
 require 'action_view/railtie'
-require 'action_cable/engine'
-require 'active_storage/engine' # Only for Rails >= 5.2
-require 'sprockets/railtie'
-# require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
