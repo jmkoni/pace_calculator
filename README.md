@@ -18,7 +18,7 @@ bin/setup
 
 ### Tests
 
-There should definitely be tests! I will be using Rspec, but I spiked this for fun over Christmas and haven't written tests yet 😳. If you want to contribute, it would be appreciated.
+There are some tests. And there are some skipped tests due to bugs! I welcome contributions.
 
 ### How to contribute
 

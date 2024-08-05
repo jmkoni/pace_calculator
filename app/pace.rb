@@ -35,13 +35,13 @@ class Pace
   end
 
   def print_pace
-    "To #{@activity} #{@distance} #{@pace_length} in " \
+    "To #{activity} #{@distance} #{@pace_length} in " \
       "#{time(@time_hours, @time_minutes, @time_seconds)}, " \
       "you need a pace of #{pace(@pace_minutes, @pace_seconds, @pace_length)}"
   end
 
   def print_time
-    "If you #{@activity} #{@distance} #{@distance_length} with " \
+    "If you #{activity} #{@distance} #{@distance_length} with " \
       "a pace of #{pace(@pace_minutes, @pace_seconds, @pace_length)}, " \
       "you'll finish in #{time(@time_hours, @time_minutes, @time_seconds)}"
   end
@@ -50,10 +50,15 @@ class Pace
     "If you #{activity} a pace of of " \
       "#{pace(@pace_minutes, @pace_seconds, @pace_length)}" \
       " for #{time(@time_hours, @time_minutes, @time_seconds)}, " \
-      "you will go #{@distance} #{@distance_length}."
+      "you will go #{pluralize(distance, distance_length)}."
   end
 
   private
+
+  def pluralize(number, text)
+    text = (number == 1) ? text : text + "s"
+    "#{number} #{text}"
+  end
 
   def calculate_pace
     distance_in_pace_length = ConverterService.convert_length(@distance,
