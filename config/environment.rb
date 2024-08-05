@@ -1,7 +1,9 @@
-# frozen_string_literal: true
+require "rubygems"
+require "bundler"
 
-# Load the Rails application.
-require_relative 'application'
+Bundler.require(:default)
+Bundler.require(Sinatra::Base.environment)
 
-# Initialize the Rails application.
-Rails.application.initialize!
+require "./app/pace"
+require "./app/pace_calculator_controller"
+require "./app/converter_service"

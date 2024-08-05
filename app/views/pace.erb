@@ -1,0 +1,185 @@
+<h1>Pace Calculator</h1>
+<div class="tab">
+  <button class="tablinks" onclick="openCalc(event, 'Running')" id="defaultOpen">Running</button>
+  <button class="tablinks" onclick="openCalc(event, 'Rowing')">Rowing</button>
+  <button class="tablinks" onclick="openCalc(event, 'Swimming')">Swimming</button>
+</div>
+
+<div id="Running" class="tabcontent">
+  <form action="/pace" method="GET">
+    <input type="hidden" name="activity" value="run">
+    <div class="field">
+      <label class="label">Pace: </label>
+      <div class="control">
+        <input type="text" name="pace_minutes" class="input"> min <input type="text" name="pace_seconds" class="input"> sec per
+        <select name="pace_length">
+          <option value="mi">mile</option>
+          <option value="km">kilometer</option>
+          <option value="m">meter</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Pace" name="pace" class="button is-link">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Distance: </label>
+      <div class="control">
+        <input type="text" name="distance" class="input">
+        <select name="distance_length">
+          <option value="mi">mile</option>
+          <option value="km">kilometer</option>
+          <option value="m">meter</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Distance" name="distance" class="button is-link">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Time: </label>
+      <div class="control">
+        <input type="text" name="time_hours" class="input"> hr <input type="text" name="time_minutes" class="input"> min <input type="text" name="time_seconds" class="input"> sec
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Time" name="time" class="button is-link">
+      </div>
+    </div>
+  </form>
+</div>
+<div id="Rowing" class="tabcontent">
+  <form action="/pace" method="GET">
+    <input type="hidden" name="activity" value="row">
+    <div class="field">
+      <label class="label">Pace: </label>
+      <div class="control">
+        <input type="text" name="pace_minutes" class="input"> min <input type="text" name="pace_seconds" class="input"> sec per 500 meters
+        <input type="hidden" name="pace_length" value="500m">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Pace" name="pace" class="button is-link">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Distance: </label>
+      <div class="control">
+        <input type="text" name="distance" class="input">
+        <select name="distance_length">
+          <option value="mi">mile</option>
+          <option value="km">kilometer</option>
+          <option value="m">meter</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Distance" name="distance" class="button is-link">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Time: </label>
+      <div class="control">
+        <input type="text" name="time_hours" class="input"> hr <input type="text" name="time_minutes" class="input"> min <input type="text" name="time_seconds" class="input"> sec
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Time" name="time" class="button is-link">
+      </div>
+    </div>
+  </form>
+</div>
+<div id="Swimming" class="tabcontent">
+    <form action="/pace" method="GET">
+    <input type="hidden" name="activity" value="swim">
+    <div class="field">
+      <label class="label">Pace: </label>
+      <div class="control">
+        <input type="text" name="pace_minutes" class="input"> min <input type="text" name="pace_seconds" class="input"> sec per
+        <select name="pace_length">
+          <option value="50yd">50 yards</option>
+          <option value="25yd">25 yards</option>
+          <option value="50m">50 meters</option>
+          <option value="25m">25 meters</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Pace" name="pace" class="button is-link">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Distance: </label>
+      <div class="control">
+        <input type="text" name="distance" class="input">
+        <select name="distance_length">
+          <option value="mi">mile</option>
+          <option value="km">kilometer</option>
+          <option value="m">meter</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Distance" name="distance" class="button is-link">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Time: </label>
+      <div class="control">
+        <input type="text" name="time_hours" class="input"> hr <input type="text" name="time_minutes" class="input"> min <input type="text" name="time_seconds" class="input"> sec
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input type="submit" value="Calculate Time" name="time" class="button is-link">
+      </div>
+    </div>
+  </form>
+</div>
+<br/>
+<% if @pace %>
+  <% if @pace.type == "pace" %>
+    <%= @pace.print_pace %>
+  <% elsif @pace.type == "time" %>
+    <%= @pace.print_time %>
+  <% elsif @pace.type == "distance" %>
+    <%= @pace.print_distance %>
+  <% end %>
+<% end %>
+<% if @error %>
+  <font color="red"><b><%= @error %></b></font>
+<% end %>
+
+<script>
+ document.getElementById("defaultOpen").click();
+ function openCalc(evt, activityName) {
+   // Declare all variables
+   var i, tabcontent, tablinks;
+
+   // Get all elements with class="tabcontent" and hide them
+   tabcontent = document.getElementsByClassName("tabcontent");
+   for (i = 0; i < tabcontent.length; i++) {
+     tabcontent[i].style.display = "none";
+   }
+
+   // Get all elements with class="tablinks" and remove the class "active"
+   tablinks = document.getElementsByClassName("tablinks");
+   for (i = 0; i < tablinks.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" active", "");
+   }
+
+   // Show the current tab, and add an "active" class to the button that opened the tab
+   document.getElementById(activityName).style.display = "block";
+   evt.currentTarget.className += " active";
+ }
+</script>

@@ -13,8 +13,8 @@ class Pace
   attr_reader :time_seconds
 
   def initialize(type:, activity:, distance: nil, pace_length: nil,
-                 distance_length: nil, pace_minutes: nil, pace_seconds: nil,
-                 time_hours: nil, time_minutes: nil, time_seconds: nil)
+    distance_length: nil, pace_minutes: nil, pace_seconds: nil,
+    time_hours: nil, time_minutes: nil, time_seconds: nil)
     @type = type
     @activity = activity
     @distance = distance.to_f
@@ -25,9 +25,9 @@ class Pace
     @time_hours = time_hours.to_i
     @time_minutes = time_minutes.to_i
     @time_seconds = time_seconds.to_i
-    if type == 'pace'
+    if type == "pace"
       calculate_pace
-    elsif type == 'time'
+    elsif type == "time"
       calculate_time
     else
       calculate_distance
@@ -57,11 +57,11 @@ class Pace
 
   def calculate_pace
     distance_in_pace_length = ConverterService.convert_length(@distance,
-                                                              @distance_length,
-                                                              @pace_length)
+      @distance_length,
+      @pace_length)
     time_in_seconds = ConverterService.convert_to_seconds(@time_hours,
-                                                          @time_minutes,
-                                                          @time_seconds)
+      @time_minutes,
+      @time_seconds)
     pace_in_seconds = time_in_seconds / distance_in_pace_length
     @pace_minutes = pace_in_seconds.to_i / 60
     @pace_seconds = pace_in_seconds.to_i % 60
@@ -69,11 +69,11 @@ class Pace
 
   def calculate_time
     pace_in_seconds = ConverterService.convert_to_seconds(0,
-                                                          @pace_minutes,
-                                                          @pace_seconds)
+      @pace_minutes,
+      @pace_seconds)
     distance_in_pace_length = ConverterService.convert_length(@distance,
-                                                              @distance_length,
-                                                              @pace_length)
+      @distance_length,
+      @pace_length)
     time_in_seconds = pace_in_seconds * distance_in_pace_length
     @time_hours = time_in_seconds.to_i / 60 / 60
     @time_minutes = time_in_seconds.to_i / 60 - (@time_hours * 60)
@@ -82,22 +82,22 @@ class Pace
 
   def calculate_distance
     time_in_seconds = ConverterService.convert_to_seconds(@time_hours,
-                                                          @time_minutes,
-                                                          @time_seconds)
+      @time_minutes,
+      @time_seconds)
     pace_in_seconds = ConverterService.convert_to_seconds(0,
-                                                          @pace_minutes,
-                                                          @pace_seconds)
+      @pace_minutes,
+      @pace_seconds)
     distance_unconverted = (time_in_seconds / pace_in_seconds)
     @distance = ConverterService.convert_length(distance_unconverted,
-                                                @pace_length,
-                                                @distance_length).round(2)
+      @pace_length,
+      @distance_length).round(2)
   end
 
   def pace(minutes, seconds, pace_length)
-    "#{minutes}:#{format('%02d', seconds)}/#{pace_length}"
+    "#{minutes}:#{format("%02d", seconds)}/#{pace_length}"
   end
 
   def time(hours, minutes, seconds)
-    "#{hours}:#{format('%02d', minutes)}:#{format('%02d', seconds)}"
+    "#{hours}:#{format("%02d", minutes)}:#{format("%02d", seconds)}"
   end
 end
