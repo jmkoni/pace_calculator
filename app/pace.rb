@@ -37,17 +37,17 @@ class Pace
   def print_pace
     "To #{activity} #{@distance} #{@pace_length} in " \
       "#{time(@time_hours, @time_minutes, @time_seconds)}, " \
-      "you need a pace of #{pace(@pace_minutes, @pace_seconds, @pace_length)}"
+      "you need a pace of #{pace(@pace_minutes, @pace_seconds, @pace_length)}."
   end
 
   def print_time
     "If you #{activity} #{@distance} #{@distance_length} with " \
       "a pace of #{pace(@pace_minutes, @pace_seconds, @pace_length)}, " \
-      "you'll finish in #{time(@time_hours, @time_minutes, @time_seconds)}"
+      "you'll finish in #{time(@time_hours, @time_minutes, @time_seconds)}."
   end
 
   def print_distance
-    "If you #{activity} a pace of of " \
+    "If you #{activity} a pace of " \
       "#{pace(@pace_minutes, @pace_seconds, @pace_length)}" \
       " for #{time(@time_hours, @time_minutes, @time_seconds)}, " \
       "you will go #{pluralize(distance, distance_length)}."
@@ -56,7 +56,7 @@ class Pace
   private
 
   def pluralize(number, text)
-    text = (number == 1) ? text : text + "s"
+    text = (number > 1.0) ? text + "s" : text
     "#{number} #{text}"
   end
 
